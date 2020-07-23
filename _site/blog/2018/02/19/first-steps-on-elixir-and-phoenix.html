@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      First steps on Elixir and Phoenix &middot; Kuquert
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/blackdoc.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=EB+Garamond">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Kuquert
+        </a>
+      </h1>
+      <p class="lead">Randon thinkery box for diverse ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about.html">About</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/styles.html">Theme Styles</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/karloespiritu/blackdoc/archive/master.zip">Download</a>
+      <hr>
+      <a class="sidebar-nav-item" href="https://github.com/karloespiritu/blackdoc">GitHub project</a>
+      <span class="sidebar-nav-item">BlackDoc Theme v2.0.1</span>
+    </nav>
+
+    <p>&copy; 2018. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">First steps on Elixir and Phoenix</h1>
+  <span class="post-date">19 Feb 2018</span>
+  <h2 id="good-services-to-watch-insde-realm">Good services to watch insde Realm</h2>
+<ul>
+  <li>nation-broker
+    <blockquote>
+      <p>example of scheduler, translator and sending messages.</p>
+    </blockquote>
+  </li>
+  <li>notification-service.</li>
+</ul>
+
+<p><strong>Live reloading</strong> is built-in
+Phoenix uses node.js
+Phoenix uses <strong>Brunch</strong> to build js and css assets.</p>
+
+<h3 id="scheme-scheme2">scheme <code class="highlighter-rouge">scheme/2</code></h3>
+<p>Scheme is the equivalent to an SQL Table, is a macro defined in EctoScheme.</p>
+
+<p>use NationBorker:</p>
+
+<h3 id="import-macro">Import macro:</h3>
+<p>The <code class="highlighter-rouge">use</code> macro is defined with <strong>using</strong></p>
+<ul>
+  <li>this is a good way to organize commum imports.
+the <code class="highlighter-rouge">import</code> macro, 
+the <code class="highlighter-rouge">alias</code> macro,</li>
+</ul>
+
+<p><code class="highlighter-rouge">@</code> keyword defines a constant macro</p>
+
+<p>nation_broker_msg is good place to see the defines contants.
+On line 11 it returns the :message_bus and assign it to @message_bus</p>
+
+<h3 id="quote-and-unquote">Quote and unquote</h3>
+<p>Serach about that, seams really cool. Spoiler: This is a way to declare differnt implementation depending on the module.</p>
+
+<h3 id="ecto">Ecto</h3>
+<p>To create a new table:
+➜  user-service git:(CG-159_bold_calc_costs_updates) mix ecto.gen.migration create_push_token_import_records_table</p>
+
+<p>Ecto changeset 
+example:
+defmodule NotificationService.PushToken do
+    # This just make sure the entrance is valid, and not expose db to invalid entries, and avoid IO usage.
+    def changeset(struct, params \ %{}) do # We need this changeset to insert things in the db, for this we need sonme transofrmations. All provided by Ecto, our little friend
+    struct
+    |&gt; cast(params, @fields) # Make casts to adjust types, and check if anything breaks.
+    |&gt; validate_required(@required_fields) # Check no null canstraints.
+    |&gt; unique_constraint(:user_id) # Check unique_id constraint.
+    |&gt; foreign_key_constraint(:user_id) # Check for 
+    end
+end</p>
+
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># This is a schema</span>
+<span class="k">defmodule</span> <span class="no">NotificationService</span><span class="o">.</span><span class="no">PushNotification</span><span class="o">.</span><span class="no">PushToken</span> <span class="k">do</span> <span class="c1"># This just make sure the entrance is valid, and not expose db to invalid entries, and avoid IO usage.</span>
+  <span class="kn">use</span> <span class="no">NotificationService</span><span class="p">,</span> <span class="ss">:model</span> 
+  
+   <span class="c1"># We need this changeset to insert things in the db, for this we need sonme transofrmations. All provided by Ecto, our little friend</span>
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">struct</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="p">%{})</span> <span class="k">do</span>
+    <span class="n">struct</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@fields</span><span class="p">)</span> <span class="c1"># Make casts to adjust types, and check if anything breaks.</span>
+    <span class="o">|&gt;</span> <span class="n">validate_required</span><span class="p">(</span><span class="nv">@required_fields</span><span class="p">)</span> <span class="c1"># Check no null canstraints.</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:user_id</span><span class="p">)</span> <span class="c1"># Check unique_id constraint.</span>
+    <span class="o">|&gt;</span> <span class="n">foreign_key_constraint</span><span class="p">(</span><span class="ss">:user_id</span><span class="p">)</span> <span class="c1"># Check for </span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">NotificationServiceMsg</span><span class="o">.</span><span class="no">PushTokenConsumer</span> <span class="k">do</span> <span class="c1"># This is a Consumer</span>
+  <span class="kn">use</span> <span class="no">NotificationServiceMsg</span><span class="p">,</span> <span class="ss">:consumer</span>
+  <span class="kn">require</span> <span class="no">Logger</span>
+
+  <span class="k">def</span> <span class="n">process</span><span class="p">(%{</span><span class="sd">"</span><span class="s2">data"</span> <span class="o">=&gt;</span> <span class="n">data</span><span class="p">,</span> <span class="sd">"</span><span class="s2">action"</span> <span class="o">=&gt;</span> <span class="n">action</span><span class="p">})</span>
+  <span class="ow">when</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">[</span><span class="sd">"</span><span class="s2">created"</span><span class="p">],</span>
+    <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="n">_token</span> <span class="p">}</span> <span class="o">=</span> <span class="no">PushNotification</span><span class="o">.</span><span class="n">insert_push_token</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1">#This is a shortcut to patternmatching, in case of errors this will break in the `dead letter queue`</span>
+
+  <span class="k">def</span> <span class="n">process</span><span class="p">(</span><span class="n">_data</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:ok</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>defmodule NotificationService.PushNotification do # This is a Context.
+  alias NotificationService.Repo
+  alias NotificationService.PushNotification.PushToken
+
+  def insert_push_token(push_token_params) do
+    %PushToken{
+      id: Ecto.UUID.generate()# This add a uuid for the to_insert push token.
+    }
+    |&gt; changeset(push_token_params)
+    |&gt; Repo.insert()
+  end
+end
+
+</code></pre></div></div>
+
+<h3 id="poison">Poison</h3>
+<p>This an example of encoder to implement inside a model class:
+<code class="highlighter-rouge">@derive {Poison.Encoder, only: [:user_id, :token, :created_at]}</code></p>
+
+<h3 id="recieve-messages">Recieve messages</h3>
+<ul>
+  <li>Create a comsumer</li>
+</ul>
+
+<h3 id="send-messages">Send messages</h3>
+<ul>
+  <li>
+    <p>Create a producer</p>
+  </li>
+  <li>
+    <p>it uses a dependency, called <a href="https://github.com/jeffhsta/kafka_message_bus/">kafka_message_bus</a></p>
+  </li>
+  <li>
+    <p>this is an <a href="https://github.com/jeffhsta/kafka_message_bus/blob/master/lib/kafka_message_bus.ex">important file</a></p>
+  </li>
+</ul>
+
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">NationBrokerMsg</span><span class="o">.</span><span class="no">Realm</span><span class="o">.</span><span class="no">UsersPushTokenProducer</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">NationBrokerMsg</span><span class="p">,</span> <span class="ss">:producer</span>
+  <span class="n">alias</span> <span class="no">NationBroker</span><span class="o">.</span><span class="no">Realm</span><span class="o">.</span><span class="no">PushToken</span>
+
+  <span class="nv">@resource</span> <span class="sd">"</span><span class="s2">push_token"</span>
+  <span class="nv">@topic</span> <span class="sd">"</span><span class="s2">notification"</span> 
+  <span class="nv">@action</span> <span class="sd">"</span><span class="s2">created"</span>
+  <span class="k">def</span> <span class="n">push_token_created</span><span class="p">(</span><span class="n">push_token</span> <span class="o">=</span> <span class="p">%</span><span class="no">PushToken</span><span class="p">{})</span> <span class="k">do</span>
+    <span class="nv">@message_bus</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span>
+      <span class="n">push_token</span><span class="p">,</span>
+      <span class="n">push_token</span><span class="o">.</span><span class="n">user_id</span><span class="p">,</span>
+      <span class="nv">@resource</span><span class="p">,</span>
+      <span class="nv">@action</span><span class="p">,</span>
+      <span class="ss">source:</span> <span class="sd">"</span><span class="s2">nation"</span><span class="p">,</span>
+      <span class="ss">topic:</span> <span class="nv">@topic</span>
+    <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="a-context-in-phoenix">A context in Phoenix</h3>
+<p>Is a parent folder that descirbes a bunch of modules.
+studies resource: https://hexdocs.pm/phoenix/contexts.html
+All things related to this context, shoulkd be here. i.e: CRUD, and filters, blablabla</p>
+
+<h3 id="composed-query-with-ecto">Composed query with Ecto</h3>
+
+<p>This is really good docs: https://hexdocs.pm/ecto/Ecto.Query.html</p>
+
+<p>def that uses query as the first parameter i.e: <code class="highlighter-rouge">query_all/2</code></p>
+
+<h3 id="module">module</h3>
+<p>To create a module:
+    Elixir files are modules.
+    The last word o <code class="highlighter-rouge">defmodule</code> by convention describes the file. 
+    i.e:
+    PushTokenImportRecord is push_token_import_record.</p>
+
+<h1 id="docker">Docker</h1>
+<h2 id="troubleshooting-docker">Troubleshooting docker</h2>
+
+<p>For most errors on elixir, mainly related to connection, is due to Docker, som helpfull commands are bellow to help you</p>
+
+<p>Remove all images:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose down # Down dockers
+docker rm $(docker ps -aq) # Remove all process
+docker rmi $(docker images -aq) # Remove all images
+docker-compose up -d # Up docker in background
+</code></pre></div></div>
+
+<p>studie - Dependecy injection in Elixir</p>
+
+<p>Resources:
+https://app.pluralsight.com/library/courses/elixir-getting-started
+https://app.pluralsight.com/library/courses/phoenix-getting-started</p>
+
+<p>https://elixir-examples.github.io/examples/phoenix-framework-from-http-request-to-response</p>
+
+<p>CheatSheet
+https://devhints.io/elixir</p>
+
+<p>https://devhints.io/phoenix-ecto</p>
+
+<p>https://learnxinyminutes.com/docs/elixir/</p>
+
+<p>REASTFull Api very easy to implement simple things:
+https://github.com/elixir-maru/maru</p>
+
+<p>Also I should add a link checker to the blog :)</p>
+
+<p>https://github.com/BohdanOrlov/iOS-Developer-Roadmap</p>
+
+<p>https://medium.com/@likid.geimfari/the-list-of-interesting-open-source-projects-2daaa2153f7c</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/04/03/tinder-conversation-algorithm.html">
+            Building a chatbot for Tinder
+            <small>03 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/03/29/3-months-without-social-networks.html">
+            What I learned being outside from social networks for the last 3 months
+            <small>29 Mar 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/03/08/software-engineering-toolbox.html">
+            Software Engineering Toolbox
+            <small>08 Mar 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

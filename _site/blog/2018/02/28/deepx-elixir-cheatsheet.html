@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      DeepX Elixir cheatsheet &middot; Kuquert
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/blackdoc.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=EB+Garamond">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Kuquert
+        </a>
+      </h1>
+      <p class="lead">Randon thinkery box for diverse ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about.html">About</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/styles.html">Theme Styles</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/karloespiritu/blackdoc/archive/master.zip">Download</a>
+      <hr>
+      <a class="sidebar-nav-item" href="https://github.com/karloespiritu/blackdoc">GitHub project</a>
+      <span class="sidebar-nav-item">BlackDoc Theme v2.0.1</span>
+    </nav>
+
+    <p>&copy; 2018. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">DeepX Elixir cheatsheet</h1>
+  <span class="post-date">28 Feb 2018</span>
+  <h2 id="running-an-application">Running an application</h2>
+<p>1 - Up docker in background
+Make sure you have the docker-compose.yml file descirbing our dockers.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up -d
+</code></pre></div></div>
+
+<p>2 - Create topics used by the service</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker exec -it notificationservice_kafka_1 bash # runs the bassh in current docker isntance of kafka.
+
+kafka-topics.sh --zookeeper zookeeper:2181 --create --partitions 50 --replication-factor 1 --topic user
+kafka-topics.sh --zookeeper zookeeper:2181 --create --partitions 50 --replication-factor 1 --topic camp
+kafka-topics.sh --zookeeper zookeeper:2181 --create --partitions 50 --replication-factor 1 --topic logging
+kafka-topics.sh --zookeeper zookeeper:2181 --create --partitions 50 --replication-factor 1 --topic organization
+kafka-topics.sh --zookeeper zookeeper:2181 --create --partitions 50 --replication-factor 1 --topic notification
+</code></pre></div></div>
+
+<p>3 - Setup database</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mix ecto.setup # Setup is not a native ecto command, its an alias for ["ecto.create", "ecto.migrate"]
+</code></pre></div></div>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>kafka-console-producer.sh –property parse.key=true –property key.separator=, –broker-list localhost:9092 –topic user</p>
+
+<p>1- Kafka console consumer/producer with a KEY:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Producer
+kafka-console-producer.sh --property parse.key=true --property key.separator=, --broker-list localhost:9092 --topic &lt;&lt;topic-name&gt;&gt;
+
+#Consumer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --property print.key=true --property key.separator=, --topic &lt;&lt;topic-name&gt;&gt;
+
+#List all from beginning
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --property print.key=true --property key.separator=, --topic &lt;&lt;topic-name&gt;&gt; --from-beginning | grep "filter-string"
+
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --property print.key=true --property key.separator=, --topic notfy --from-beginning | grep "filter-string"
+</code></pre></div></div>
+
+<p>2 - Create topics:</p>
+
+<p>3 - Describe topics:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kafka-topics.sh --zookeeper zookeeper:2181 --describe --topic camp
+</code></pre></div></div>
+
+<p>Before push:
+mix test –cover &amp;&amp; mix credo -a</p>
+
+<p>4 - Hierarchy of Messages:
+<code class="highlighter-rouge">Topic -&gt; Partition(n+) -&gt; Msg (n+)</code>
+Remeber that partitions are defined by a hash of its key.</p>
+
+<p>Default value to function declaration</p>
+
+<p>def bla(message, key // nil).</p>
+
+<p>To create a new lib with an application.
+mix new –sup naom-of-app</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/04/03/tinder-conversation-algorithm.html">
+            Building a chatbot for Tinder
+            <small>03 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/03/29/3-months-without-social-networks.html">
+            What I learned being outside from social networks for the last 3 months
+            <small>29 Mar 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2018/03/08/software-engineering-toolbox.html">
+            Software Engineering Toolbox
+            <small>08 Mar 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
