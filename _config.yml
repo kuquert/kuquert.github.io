@@ -7,7 +7,7 @@ title:            Kuquert
 tagline:          Hobbies and learing expierences
 description:      "Randon thinkery box for diverse ideas"
 url:              https://kuquert.github.io
-source:           https://github.com/kuquert/kuquert.github.io
+baseurl:          /
 
 author:
   name:           Marcus Kuquert
