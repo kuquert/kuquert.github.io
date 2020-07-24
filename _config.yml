@@ -15,6 +15,7 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-feed
+  - jekyll-admin
 
 paginate: 5
 
