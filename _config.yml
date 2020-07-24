@@ -4,7 +4,7 @@ highlighter:      rouge
 
 # Setup
 title:            Kuquert
-tagline:          cocoa-cookie iOS sec blog
+tagline:          Hobbies and learing expierences
 description:      "Randon thinkery box for diverse ideas"
 url:              https://github.com/karloespiritu/blackdoc
 baseurl:          /
@@ -13,7 +13,7 @@ baseurl:          /
 
 author:
   name:           Marcus Kuquert
-  bio:          "Bachelor's student in Software Engineering from Pontifícia Universidade do Rio Grande do Sul (PUCRS), Brazil. Mobile software engineer w/4+ years of experience. Worked at IT companies in fields including IOT, FinTech and Health. Using languages such as Objective-C, Swift and Kotlin. Worked with R&D at Microgravity Center at PUCRS, including areas like circuit boards design and 3d printing. Participant of Apple Developer Academy program, including projects using Apple`s ResearchKit for mobile health research."
+  bio:            "Mobile software engineer w/4+ years of experience. Worked at IT companies in fields including IOT, FinTech and Health. Using languages such as Objective-C, Swift and Kotlin. Worked with R&D at Microgravity Center at PUCRS, including areas like circuit boards design and 3d printing. Participant of Apple Developer Academy program, including projects using Apple`s ResearchKit for mobile health research."
   twitter:        https://twitter.com/kuquert
   github:         https://github.com/kuquert
 
