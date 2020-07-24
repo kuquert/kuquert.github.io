@@ -18,16 +18,13 @@ title: Home
   </div>
   <!-- Limits the amount of posts on home page! -->
   {% if forloop.index == 5 %}
-
-    <!-- <span class="pagination-item archive">Archive</span> -->
-    <a class="pagination-item newer" href="{{ site.baseurl }}archive.html">Archive...</a>
     {% break %}
   {% endif %}
 
   {% endfor %}
 </div>
 
-<!-- <div class="pagination">
+<div class="pagination">
   {% if paginator.next_page %}
     <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
   {% else %}
@@ -42,4 +39,4 @@ title: Home
   {% else %}
     <span class="pagination-item newer">Newer</span>
   {% endif %}
-</div> -->
+</div>
