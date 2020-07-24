@@ -5,9 +5,8 @@ title: About
 
 ### Marcus Vinicius Kuquert
 
-{{ site.author.bio }}
-
-Tecnologias que me interessam.
+Mobile software engineer w/4+ years of experience. Worked at IT companies in fields including IOT, FinTech and Health. Using languages such as Objective-C, Swift and Kotlin. Worked with R&D at Microgravity Center at PUCRS, including areas like circuit boards design and 3d printing. Participant of Apple Developer Academy program, including projects using Apple's ResearchKit for mobile health research.
+Tech I'm interested with:
 
 #### Backend:
 - Elixir e Phoenix.
@@ -17,10 +16,3 @@ Tecnologias que me interessam.
 - iOS ❤️ Swift
 - Android ❤️ Kotlin
 - Elm
-- React
-
-Reach me on [Twitter]({{ site.author.twitter }}).
-
-<p class="message">
-  Hi there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>

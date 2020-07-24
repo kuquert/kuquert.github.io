@@ -7,16 +7,14 @@ baseurl: /
 theme: minima
 
 # Author info
-author:
-  name: Marcus Kuquert
-  bio: "Mobile software engineer w/4+ years of experience. Worked at IT companies in fields including IOT, FinTech and Health. Using languages such as Objective-C, Swift and Kotlin. Worked with R&D at Microgravity Center at PUCRS, including areas like circuit boards design and 3d printing. Participant of Apple Developer Academy program, including projects using Apple`s ResearchKit for mobile health research."
-  twitter: https://twitter.com/kuquert
-  github: https://github.com/kuquert
+twitter_username: kuquert
+github_username:  kuquert
 
 # Plugins config
 plugins:
   - jekyll-gist
   - jekyll-paginate
+  - jekyll-feed
 
 paginate: 5
 
