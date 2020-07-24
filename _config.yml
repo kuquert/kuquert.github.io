@@ -4,12 +4,7 @@ tagline: Hobbies and learing expierences
 description: "Randon thinkery box for diverse ideas"
 url: https://kuquert.github.io
 baseurl: /
-
-# Gihub Pages config
-lsi: false
-safe: true
-incremental: false
-highlighter: rouge
+theme: minima
 
 # Author info
 author:
@@ -23,19 +18,8 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
 
-
-gist:
-  noscript: false
-
 paginate: 5
 
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
-
-# Custom vars
-version:            2.0.1
-
-# Github info //TODO: remove this
-github:
-  repo: https://github.com/karloespiritu/blackdoc
