@@ -1,32 +1,41 @@
-# Dependencies
-markdown:         kramdown
-highlighter:      rouge
-
 # Setup
-title:            Kuquert
-tagline:          Hobbies and learing expierences
-description:      "Randon thinkery box for diverse ideas"
-url:              https://kuquert.github.io
-baseurl:          /
+title: Kuquert
+tagline: Hobbies and learing expierences
+description: "Randon thinkery box for diverse ideas"
+url: https://kuquert.github.io
+baseurl: /
 
+# Gihub Pages config
+lsi: false
+safe: true
+incremental: false
+highlighter: rouge
+
+# Author info
 author:
-  name:           Marcus Kuquert
-  bio:            "Mobile software engineer w/4+ years of experience. Worked at IT companies in fields including IOT, FinTech and Health. Using languages such as Objective-C, Swift and Kotlin. Worked with R&D at Microgravity Center at PUCRS, including areas like circuit boards design and 3d printing. Participant of Apple Developer Academy program, including projects using Apple`s ResearchKit for mobile health research."
-  twitter:        https://twitter.com/kuquert
-  github:         https://github.com/kuquert
+  name: Marcus Kuquert
+  bio: "Mobile software engineer w/4+ years of experience. Worked at IT companies in fields including IOT, FinTech and Health. Using languages such as Objective-C, Swift and Kotlin. Worked with R&D at Microgravity Center at PUCRS, including areas like circuit boards design and 3d printing. Participant of Apple Developer Academy program, including projects using Apple`s ResearchKit for mobile health research."
+  twitter: https://twitter.com/kuquert
+  github: https://github.com/kuquert
 
-
-paginate:         5
-# paginate_path:    '/page:num'
-                    # Or '/my-jekyll-site/page:num' if you want to move your index pages
-
+# Plugins config
 plugins:
-  - jekyll-feed
   - jekyll-gist
   - jekyll-paginate
+
+
+gist:
+  noscript: false
+
+paginate: 5
+
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
 
 # Custom vars
 version:            2.0.1
 
+# Github info //TODO: remove this
 github:
-  repo:             https://github.com/karloespiritu/blackdoc
+  repo: https://github.com/karloespiritu/blackdoc
