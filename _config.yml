@@ -30,3 +30,5 @@ version:            2.0.1
 
 github:
   repo:             https://github.com/karloespiritu/blackdoc
+
+theme: jekyll-theme-midnight
