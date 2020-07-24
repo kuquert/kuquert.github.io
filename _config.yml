@@ -6,10 +6,8 @@ highlighter:      rouge
 title:            Kuquert
 tagline:          Hobbies and learing expierences
 description:      "Randon thinkery box for diverse ideas"
-url:              https://github.com/karloespiritu/blackdoc
-baseurl:          /
-                  # the optional subpath of your site, e.g. "/my-jekyll-site/"
-                  # This will apply to all pages in your Jekyll site.
+url:              https://kuquert.github.io
+source:           https://github.com/kuquert/kuquert.github.io
 
 author:
   name:           Marcus Kuquert
